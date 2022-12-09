@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Restaraunt',
+          model: 'restaraunt',
           key: 'id'
         }
       },
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Order',
-      tableName: 'order'
+      tableName: 'orders'
     }
   )
   return Order
