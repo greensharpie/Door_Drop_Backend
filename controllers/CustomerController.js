@@ -9,6 +9,16 @@ const GetAllCustomers = async (req, res) => {
   }
 }
 
+const GetCustomerDetails = async (req, res) => {
+  try {
+    const customers = await Customer.findByPk(req.params.customerId)
+    res.send(customers)
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
-  GetAllCustomers
+  GetAllCustomers,
+  GetCustomerDetails
 }
