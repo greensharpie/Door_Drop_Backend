@@ -29,8 +29,8 @@ const CreateCustomer = async (req, res) => {
 
 const UpdateCustomer = async (req, res) => {
   try {
-    const customerId = parseInt(req.params.customer_id)
-    const UpdateCustomer = await Customer.update(req.body, {
+    let customerId = parseInt(req.params.customer_id)
+    let UpdateCustomer = await Customer.update(req.body, {
       where: { id: customerId },
       returning: true
     })
