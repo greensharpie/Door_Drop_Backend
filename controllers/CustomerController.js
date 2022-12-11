@@ -23,7 +23,7 @@ const CreateCustomer = async (req, res) => {
     const newCustomer = await Customer.create(req.body)
     res.send(newCustomer)
   } catch (error) {
-    throw error
+    return res.status(500).send(error.message)
   }
 }
 
