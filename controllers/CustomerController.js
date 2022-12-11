@@ -1,10 +1,8 @@
-const { Customer, Order } = require('../models')
+const { Customer, MenuItem, Order } = require('../models')
 
 const GetAllCustomers = async (req, res) => {
   try {
-    const customers = await Customer.findAll({
-      include: [{ model: Order }]
-    })
+    const customers = await Customer.findAll()
     res.send(customers)
   } catch (error) {
     throw error
