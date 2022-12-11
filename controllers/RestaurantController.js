@@ -54,9 +54,22 @@ const UpdateRestaurant = async (req, res) => {
   }
 }
 
+const DeleteRestaurant = async (req, res) => {
+  try {
+    let restaurantId = parseInt(req.params.id)
+    await Restaurant.destroy({
+      where: { id: restaurantId }
+    })
+    res.send({ message: `Deleted restaurant with an id of ${restaurantId}` })
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   GetAllRestaurants,
   GetRestaurantById,
   CreateRestaurant,
-  UpdateRestaurant
+  UpdateRestaurant,
+  DeleteRestaurant
 }
