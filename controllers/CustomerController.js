@@ -42,9 +42,9 @@ const UpdateCustomer = async (req, res) => {
 
 const DeleteCustomer = async (req, res) => {
   try {
-    const customerId = parseInt(req.params.customer_id)
+    let customerId = parseInt(req.params.id)
     await Customer.destroy({ where: { id: customerId } })
-    res.send({ message: `Deleted user with an id of ${userId}` })
+    res.send({ message: `Deleted user with an id of ${customerId}` })
   } catch (error) {
     throw error
   }
