@@ -9,9 +9,9 @@ const GetAllCustomers = async (req, res) => {
   }
 }
 
-const GetCustomerDetails = async (req, res) => {
+const GetCustomerById = async (req, res) => {
   try {
-    const customers = await Customer.findByPk(req.params.customerId)
+    const customers = await Customer.findByPk(req.params.id)
     res.send(customers)
   } catch (error) {
     throw error
@@ -52,7 +52,7 @@ const DeleteCustomer = async (req, res) => {
 
 module.exports = {
   GetAllCustomers,
-  GetCustomerDetails,
+  GetCustomerById,
   CreateCustomer,
   UpdateCustomer,
   DeleteCustomer
