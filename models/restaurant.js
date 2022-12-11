@@ -8,20 +8,27 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Restaurant.hasMany(models.MenuItem, { foreignKey: 'restaurantId' })
-      Restaurant.hasMany(models.Order, { foreignKey: 'restaurantId' })
+      Restaurant.hasMany(models.MenuItem, {
+        foreignKey: 'restaurantId',
+        as: 'restaurant_items'
+      })
+      Restaurant.belongsToMany(models.Customer, {
+        as: 'restaurant_customers',
+        through: models.Favorite,
+        foreignKey: 'restaurantId'
+      })
     }
   }
   Restaurant.init(
     {
-      Name: DataTypes.STRING,
-      Description: DataTypes.STRING,
+      name: DataTypes.STRING,
+      description: DataTypes.STRING,
       image: DataTypes.STRING
     },
     {
       sequelize,
       modelName: 'Restaurant',
-      tableName: 'restaurant'
+      tableName: 'restaurants'
     }
   )
   return Restaurant

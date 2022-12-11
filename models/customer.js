@@ -8,13 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Customer.hasOne(models.Order, { foreignKey: 'customerId' })
+      Customer.hasOne(models.Order, {
+        foreignKey: 'customerId',
+        as: 'customer_order'
+      })
+      Customer.belongsToMany(models.Restaurant, {
+        as: 'customer_favorites',
+        through: models.Favorite,
+        foreignKey: 'customerId'
+      })
     }
   }
   Customer.init(
     {
-      FirstName: DataTypes.STRING,
-      LastName: DataTypes.STRING,
+      firstName: DataTypes.STRING,
+      lastName: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -32,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Customer',
-      tableName: 'customer'
+      tableName: 'customers'
     }
   )
   return Customer

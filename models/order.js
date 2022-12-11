@@ -9,35 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Order.belongsTo(models.Customer, { foreignKey: 'customerId' })
-      Order.belongsTo(models.Restaurant, { foreignKey: 'restaurantId' })
-      Order.belongsToMany(models.MenuItem, {
+      Order.hasMany(models.MenuItem, {
         foreignKey: 'orderId',
-        as: 'order_item',
-        through: models.MenuOrder
+        as: 'order_items'
       })
     }
   }
   Order.init(
     {
-      restaurantId: {
-        type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'restaraunt',
-          key: 'id'
-        }
-      },
       customerId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'customer',
+          model: 'customers',
           key: 'id'
         }
-      },
-      OrderedDate: DataTypes.DATE,
-      PreparedDate: DataTypes.DATE,
-      DeliveredDate: DataTypes.DATE
+      }
     },
     {
       sequelize,

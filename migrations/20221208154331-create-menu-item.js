@@ -2,26 +2,39 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('menu_item', {
+    await queryInterface.createTable('items', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      restaurant_id: {
-        type: Sequelize.INTEGER
+      restaurantId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'restaurants',
+          key: 'id'
+        }
       },
-      Name: {
+      customerId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'customers',
+          key: 'id'
+        }
+      },
+      name: {
         type: Sequelize.STRING
       },
-      Description: {
+      description: {
         type: Sequelize.STRING
       },
       image: {
         type: Sequelize.STRING
       },
-      Price: {
+      price: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -35,6 +48,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('menu_item')
+    await queryInterface.dropTable('items')
   }
 }

@@ -9,23 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      customer_id: {
-        type: Sequelize.INTEGER
-      },
-      restaurant_id: {
-        type: Sequelize.INTEGER
-      },
-      menu_item_id: {
-        type: Sequelize.INTEGER
-      },
-      OrderedDate: {
-        type: Sequelize.DATE
-      },
-      PreparedDate: {
-        type: Sequelize.DATE
-      },
-      DeliveredDate: {
-        type: Sequelize.DATE
+      customerId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'customers',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

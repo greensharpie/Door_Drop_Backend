@@ -4,11 +4,11 @@ const falso = require('@ngneat/falso')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const customer = [...Array(5)].map(() => {
+    const customers = [...Array(5)].map(() => {
       const address = `${falso.randStreetAddress()} ${falso.randCity()}, ${falso.randState()}`
       return {
-        FirstName: falso.randFirstName(),
-        LastName: falso.randLastName(),
+        firstName: falso.randFirstName(),
+        lastName: falso.randLastName(),
         email: falso.randEmail(),
         passwordDigest: falso.randPassword(),
         address: address,
@@ -16,10 +16,10 @@ module.exports = {
         updatedAt: falso.randRecentDate()
       }
     })
-    await queryInterface.bulkInsert('customer', customer)
+    await queryInterface.bulkInsert('customers', customers)
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('customer')
+    await queryInterface.bulkDelete('customers')
   }
 }

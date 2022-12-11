@@ -9,21 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       MenuItem.belongsTo(models.Restaurant, { foreignKey: 'restaurantId' })
-      MenuItem.belongsTo(models.Order, { foreignKey: 'menuItemId' })
-      MenuItem.belongsToMany(models.Order, {
-        as: 'menu_item',
-        through: models.MenuOrder,
-        foreignKey: 'menuItemId'
-      })
+      MenuItem.belongsTo(models.Order, { foreignKey: 'orderId' })
     }
   }
   MenuItem.init(
     {
-      menuItemId: {
+      customerId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'orders',
+          model: 'customers',
           key: 'id'
         }
       },
@@ -31,19 +26,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'restaurant',
+          model: 'restaurants',
           key: 'id'
         }
       },
-      Name: DataTypes.STRING,
-      Description: DataTypes.STRING,
+      name: DataTypes.STRING,
+      description: DataTypes.STRING,
       image: DataTypes.STRING,
-      Price: DataTypes.INTEGER
+      price: DataTypes.INTEGER
     },
     {
       sequelize,
       modelName: 'MenuItem',
-      tableName: 'menu_item'
+      tableName: 'items'
     }
   )
   return MenuItem
