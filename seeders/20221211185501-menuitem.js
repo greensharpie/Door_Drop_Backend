@@ -9,7 +9,7 @@ module.exports = {
       description: falso.randProductDescription(),
       image: falso.randImg(),
       price: falso.randNumber(),
-      customerId: falso.randNumber({ min: 1, max: 5 }),
+      orderId: falso.randNumber({ min: 1, max: 5 }),
       restaurantId: falso.randNumber({ min: 1, max: 5 }),
       createdAt: falso.randPastDate(),
       updatedAt: falso.randRecentDate()
@@ -21,3 +21,6 @@ module.exports = {
     await queryInterface.bulkDelete('items')
   }
 }
+
+//20221209025740
+//20221211185501

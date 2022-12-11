@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   MenuItem.init(
     {
-      customerId: {
+      orderId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'customers',
+          model: 'orders',
           key: 'id'
         }
       },

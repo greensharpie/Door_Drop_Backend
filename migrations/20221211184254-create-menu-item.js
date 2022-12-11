@@ -17,11 +17,11 @@ module.exports = {
           key: 'id'
         }
       },
-      customerId: {
+      orderId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'customers',
+          model: 'orders',
           key: 'id'
         }
       },
@@ -51,3 +51,6 @@ module.exports = {
     await queryInterface.dropTable('items')
   }
 }
+
+//20221208154331
+//20221211184254

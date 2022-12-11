@@ -17,4 +17,5 @@ module.exports = {
   }
 }
 
-// sequelize db:seed --seed 20221209143958-orders.js
+//20221209143958
+//20221211033305
