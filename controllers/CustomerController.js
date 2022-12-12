@@ -40,6 +40,28 @@ const UpdateCustomer = async (req, res) => {
   }
 }
 
+const getCustomerOrder = async (req, res) => {
+  try {
+    const customer = await Customer.findAll({
+      include: [
+        {
+          model: Order,
+          as: 'customer_order',
+          include: [
+            {
+              model: MenuItem,
+              as: 'order_items'
+            }
+          ]
+        }
+      ]
+    })
+    res.send(customer)
+  } catch (error) {
+    throw error
+  }
+}
+
 const DeleteCustomer = async (req, res) => {
   try {
     let customerId = parseInt(req.params.id)
@@ -55,5 +77,6 @@ module.exports = {
   GetCustomerById,
   CreateCustomer,
   UpdateCustomer,
-  DeleteCustomer
+  DeleteCustomer,
+  getCustomerOrder
 }
