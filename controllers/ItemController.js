@@ -30,7 +30,7 @@ const UpdateItem = async (req, res) => {
 const GetOrderItems = async (req, res) => {
   try {
     const orders = await Order.findAll({
-      // include: [{ model: Restaurant, as: 'restaurant_order' }],
+      include: [{ model: Restaurant, as: 'restaurant_order' }]
       // raw: true
     })
     res.send(orders)
@@ -42,9 +42,9 @@ const GetOrderItems = async (req, res) => {
 const GetRestaurantWithAllOrders = async (req, res) => {
   try {
     const restaurant = await Restaurant.findAll({
-      // include: [
-      //   { model: Order, as: 'restaurant_cart', through: { attributes: [] } }
-      // ],
+      include: [
+        { model: Order, as: 'restaurant_cart', through: { attributes: [] } }
+      ]
       // raw: true
     })
     res.send(restaurant)
