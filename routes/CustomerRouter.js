@@ -8,10 +8,4 @@ Router.put('/id/:customer_id', controller.UpdateCustomer)
 Router.delete('/id/:id', controller.DeleteCustomer)
 Router.get('/customer_order', controller.getCustomerOrder)
 
-//auth
-Router.post('/login', controller.LoginCustomer)
-Router.post('/register', controller.RegisterCustomer)
-Router.post('/update', controller.UpdatePassword)
-Router.get('/session', controller.CheckSession)
-
 module.exports = Router

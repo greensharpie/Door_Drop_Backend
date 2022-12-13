@@ -72,84 +72,11 @@ const DeleteCustomer = async (req, res) => {
   }
 }
 
-const RegisterCustomer = async (req, res) => {
-  try {
-    const { firstName, email, password } = req.body
-    console.log(password)
-    let passwordDigest = await middleware.hashPassword(password)
-    const customer = await Customer.create({
-      firstName,
-      email,
-      passwordDigest
-    })
-    res.send(customer)
-  } catch (error) {
-    res.status(500).send({ err: error })
-  }
-}
-
-const LoginCustomer = async (req, res) => {
-  try {
-    const customer = await Customer.findOne({
-      where: {
-        email: req.body.email
-      },
-      raw: true
-    })
-    if (
-      customer &&
-      (await middleware.comparePassword(
-        customer.passwordDigest,
-        req.body.password
-      ))
-    ) {
-      let payload = {
-        id: customer.id,
-        email: customer.email
-      }
-      let token = middleware.createToken(payload)
-      return res.send({ customer: payload, token })
-    }
-    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
-  } catch (error) {
-    throw error
-  }
-}
-
-const CheckSession = async (req, res) => {
-  console.log(res.locals)
-  const { payload } = res.locals
-  res.send(payload)
-}
-
-const UpdatePassword = async (req, res) => {
-  try {
-    const { oldPassword, newPassword } = req.body
-    const customer = await Customer.findByPk(req.params.customer_id)
-    if (
-      customer &&
-      (await middleware.comparePassword(
-        customer.dataValues.passwordDigest,
-        oldPassword
-      ))
-    ) {
-      let passwordDigest = await middleware.hashPassword(newPassword)
-      await customer.update({ passwordDigest })
-      return res.send({ status: 'Ok', payload: customer })
-    }
-    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
-  } catch (error) {}
-}
-
 module.exports = {
   GetAllCustomers,
   GetCustomerById,
   CreateCustomer,
   UpdateCustomer,
   DeleteCustomer,
-  getCustomerOrder,
-  RegisterCustomer,
-  LoginCustomer,
-  CheckSession,
-  UpdatePassword
+  getCustomerOrder
 }
