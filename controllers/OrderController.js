@@ -46,8 +46,44 @@ const AddOrderItem = async (req, res) => {
   }
 }
 
+const CreateOrder = async (req, res) => {
+  try {
+    const customerId = parseInt(req.params.customer_id)
+    let itemBody = {
+      customerId
+    }
+    const createdOrder = await Order.create(itemBody)
+    res.send(createdOrder)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const DeleteItem = async (req, res) => {
+  try {
+    const itemId = parseInt(req.params.item_id)
+    await MenuItem.destroy({ where: { id: itemId } })
+    res.send({ message: `Deleted item with and id of ${itemId}` })
+  } catch (error) {
+    throw error
+  }
+}
+
+const DeleteOrder = async (req, res) => {
+  try {
+    const orderId = parseInt(req.params.order_id)
+    await Cart.destroy({ where: { id: orderId } })
+    res.send({ message: `Deleted order with and id of ${orderId}` })
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   getOrderItems,
   GetOrdersById,
-  AddOrderItem
+  AddOrderItem,
+  CreateOrder,
+  DeleteItem,
+  DeleteOrder
 }
