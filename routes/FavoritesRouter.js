@@ -1,12 +1,15 @@
-const router = require('express').Router()
+const Router = require('express').Router()
 const controller = require('../controllers/FavoritesController')
 
-router.get('/customer_favorites', controller.GetCustomersFavorites)
-router.get('/restaurant_users', controller.GetRestaurantsWithCustomerList)
-router.post(
+Router.get('/get_all', controller.GetallFavorites)
+Router.get('/customer_favorites', controller.GetCustomersFavorites)
+Router.get('/restaurant_users', controller.GetRestaurantsWithCustomerList)
+Router.get('/customer_favorites/id/:id', controller.GetCustomerFavoritesById)
+Router.post(
   '/create/customer_id/:customer_id/restaurant_id/:restaurant_id',
   controller.CreateFavorite
 )
-router.put('/update/:customerId/:restaurantId', controller.UpdateFavorite)
+Router.put('/update/:customerId/:restaurantId', controller.UpdateFavorite)
+Router.delete('/customer_id/:customer_id/restaurant_id/:restaurant_id')
 
-module.exports = router
+module.exports = Router
