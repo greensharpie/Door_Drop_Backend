@@ -9,6 +9,24 @@ const CreatItem = async (req, res) => {
   }
 }
 
+const AddOrderItem = async (req, res) => {
+  try {
+    const order_items = await Item.findByPk(req.params.item_id)
+    const orderId = parseInt(req.params.order_id)
+
+    let itemBody = {
+      name: order_items.name,
+      price: order_items.price,
+      image: order_items.image,
+      orderId
+    }
+    const addItemToCart = await MenuItem.create(itemBody)
+    res.send(addItemToCart)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 const UpdateItem = async (req, res) => {
   try {
     const updateItem = await MenuItem.update(
@@ -57,5 +75,6 @@ module.exports = {
   CreatItem,
   UpdateItem,
   GetOrderItems,
-  GetRestaurantWithAllOrders
+  GetRestaurantWithAllOrders,
+  AddOrderItem
 }
