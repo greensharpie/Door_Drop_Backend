@@ -10,6 +10,9 @@ Router.post(
   controller.CreateFavorite
 )
 Router.put('/update/:customerId/:restaurantId', controller.UpdateFavorite)
-Router.delete('/customer_id/:customer_id/restaurant_id/:restaurant_id')
+Router.delete(
+  '/customer_id/:customer_id/restaurant_id/:restaurant_id',
+  controller.DeleteFavorite
+)
 
 module.exports = Router
