@@ -2,8 +2,17 @@ const { Restaurant, Favorite, Customer } = require('../models')
 
 const CreateFavorite = async (req, res) => {
   try {
-    const favorite = await Favorite.create(req.body)
-    res.send(favorite)
+    // const favorite = await Favorite.create(req.body)
+    // res.send(favorite)
+    const customerId = parseInt(req.params.customer_id)
+    const restaurantId = parseInt(req.params.restaurant_id)
+
+    let itemBody = {
+      customerId,
+      restaurantId
+    }
+    const addToFavorite = await Favorite.create(itemBody)
+    res.send(addToFavorite)
   } catch (error) {
     return res.status(500).send(error.message)
   }
