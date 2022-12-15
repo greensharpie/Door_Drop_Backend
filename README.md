@@ -6,7 +6,7 @@ A PERN Stack food delivery platform that makes it easy to get great food from yo
 
 ### Date: Dec 08, 2022
 
-### [GitHub - Frontend]() | [GitHub - Backend](https://github.com/greensharpie/Door_Drop_Backend) | [Trello Board](https://trello.com/b/xrNp2Go1/door-drop#) | [Heroku App](TBD)
+### [GitHub - Backend](https://github.com/greensharpie/Door_Drop_Backend) | [Trello Board](https://trello.com/b/xrNp2Go1/door-drop#) | [Heroku App](TBD)
 
 ---
 
@@ -20,7 +20,9 @@ Authenticated Door Drop users can log in to:
 - Users will be able to search for specific restaurants by name.
 - Restaurant owners will be able to add their restaurants and display food menu.
 
-####
+#### Component Hierarchy Diagram
+
+![image](Pictures/ERD.png)
 
 ---
 
@@ -28,20 +30,32 @@ Authenticated Door Drop users can log in to:
 
 ####
 
-In addition to built-in User Authentication, this app will feature PERN stack technologies. The backend will focus on:
+- Front-End
 
-- PostgreSQL for hosting restaurants pertaining to Customers, Menu Items, and Customer orders.
-- Express/Node as the web framework/server by which front and back ends are connected
+  - React.js
+  - Bootstrap
+
+- Back-End
+
+  - Sequelize
+  - Express
+  - PostgreSQL
 
 ---
 
 ### **_Screenshots_**
 
-####
+> #### **Landing Page**
+>
+> ![image](Pictures/LandingPage.png)
 
-####
+> #### **Restaurant Page**
+>
+> ![image](Pictures/RestPage.png)
 
-TBD
+> #### **Restaurant Item Page**
+>
+> ![image](Pictures/ItemPage.png)
 
 ####
 
@@ -51,11 +65,9 @@ TBD
 
 ####
 
-- [x] Bug Fix
-- [ ] Bug Fix
-- [ ] Future Update 1
-- [ ] Future Update 2
-- [ ] Etc.
+- [] Add Items To Restaurant
+- [ ] Continue Working On Mobile/Desktop Features
+- [ ] Deployment
 
 ---
 

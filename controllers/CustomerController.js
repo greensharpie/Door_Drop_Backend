@@ -11,7 +11,20 @@ const GetAllCustomers = async (req, res) => {
 
 const GetCustomerById = async (req, res) => {
   try {
-    const customers = await Customer.findByPk(req.params.id)
+    const customers = await Customer.findByPk(req.params.id, {
+      include: [
+        {
+          model: Order,
+          as: 'customer_order',
+          include: [
+            {
+              model: MenuItem,
+              as: 'order_items'
+            }
+          ]
+        }
+      ]
+    })
     res.send(customers)
   } catch (error) {
     throw error

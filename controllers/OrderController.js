@@ -37,7 +37,9 @@ const AddOrderItem = async (req, res) => {
       name: order_items.name,
       price: order_items.price,
       description: order_items.description,
-      image: order_items.image
+      image: order_items.image,
+      orderId,
+      restaurantId
     }
     const addItemToOrder = await MenuItem.create(orderBody)
     res.send(addItemToOrder)
