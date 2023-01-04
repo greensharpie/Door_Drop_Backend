@@ -69,7 +69,7 @@ Authenticated Door Drop users can log in to:
 
 ####
 
-- [] Add Items To Restaurant
+- [ ] Add Items To Restaurant
 - [ ] Continue Working On Mobile/Desktop Features
 - [ ] Deployment
 
